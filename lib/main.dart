@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:ejemplo_construccion/pages/calls.dart';
 import 'package:ejemplo_construccion/pages/chats.dart';
+import 'package:flutter/material.dart';
+
+
 
 void main() => runApp(MyApp());
 
@@ -11,12 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.teal[700],
-        primaryColorDark: Colors.teal[900],
-        accentColor: Colors.lightGreenAccent[400]
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+          primarySwatch: Colors.blue,
+          primaryColor: Colors.teal[700],
+          primaryColorDark: Colors.teal[900],
+          accentColor: Colors.lightGreenAccent[400]),
+      home: MyHomePage(title: 'Kwhastapp'),
     );
   }
 }
@@ -29,16 +30,21 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   int _counter = 0;
   int _currentPage = 0;
+  
+  TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 2,initialIndex: 0);
+  }
 
-  List<Widget> _pages =[
-    CallPage(),
-    ChatPage()
-  ];
+  List<Widget> _pages = [CallPage(), ChatPage()];
 
-  void _changePage(int index){
+  void _changePage(int index) {
     setState(() {
       _currentPage = index;
     });
@@ -55,7 +61,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        elevation: 0.5,
+        bottom: TabBar(
+          indicatorColor: Colors.white,
+          controller: _tabController,
+          tabs: <Widget>[
+          Tab(text: 'Llamadas',),
+          Tab(text: 'Mensajes',)
+        ],),
       ),
+      /*
       bottomNavigationBar: BottomNavigationBar(
         onTap: _changePage,
         currentIndex: _currentPage,
@@ -67,9 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.face), title: Text('Usuarios')),
         ],
+      ),*/
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[CallPage(), ChatPage()],
       ),
-      body: _pages[_currentPage],
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
