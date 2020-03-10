@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage>
           indicatorColor: Colors.white,
           controller: _tabController,
           tabs: <Widget>[
-          Tab(text: 'Llamadas',),
+          Tab(text: 'Llamadas'),
           Tab(text: 'Mensajes',)
         ],),
       ),
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage>
               icon: Icon(Icons.fast_rewind), title: Text('Retroceder')),
           BottomNavigationBarItem(
               icon: Icon(Icons.extension), title: Text('Funcionalidades')),
-          BottomNavigationBarItem(
+          BottomNavigationBarItem( 
               icon: Icon(Icons.face), title: Text('Usuarios')),
         ],
       ),*/
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
         controller: _tabController,
         children: <Widget>[CallPage(), ChatPage()],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
