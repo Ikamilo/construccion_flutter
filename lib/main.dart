@@ -1,5 +1,6 @@
 import 'package:ejemplo_construccion/pages/calls.dart';
 import 'package:ejemplo_construccion/pages/chats.dart';
+import 'package:ejemplo_construccion/pages/test.dart';
 import 'package:flutter/material.dart';
 
 
@@ -39,10 +40,10 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 2,initialIndex: 0);
+    _tabController = TabController(vsync: this, length: 3,initialIndex: 0);
   }
 
-  List<Widget> _pages = [CallPage(), ChatPage()];
+  List<Widget> _pages = [CallPage(), ChatPage(), TestPage()];
 
   void _changePage(int index) {
     setState(() {
@@ -67,7 +68,8 @@ class _MyHomePageState extends State<MyHomePage>
           controller: _tabController,
           tabs: <Widget>[
           Tab(text: 'Llamadas'),
-          Tab(text: 'Mensajes',)
+          Tab(text: 'Mensajes',),
+          Tab(text: 'Test',),
         ],),
       ),
       /*
@@ -85,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
       ),*/
       body: TabBarView(
         controller: _tabController,
-        children: <Widget>[CallPage(), ChatPage()],
+        children: <Widget>[CallPage(), ChatPage(), TestPage()],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
